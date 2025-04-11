@@ -1,5 +1,10 @@
 import { Toast, ToastActionElement, ToastProps } from "@/components/ui/toast"
-import { toast as sonnerToast, ToastT } from "sonner"
+import {
+  toast as sonnerToast,
+  ToastT,
+  Renderable,
+  ValueOrFunction,
+} from "sonner"
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
@@ -30,11 +35,19 @@ type ActionType = typeof actionTypes
 
 type Action =
   | {
-      type: ActionType["ADD_TOAST"] | ActionType["UPDATE_TOAST"]
-      toast: ToasterToast | Partial<ToasterToast>
+      type: ActionType["ADD_TOAST"]
+      toast: ToasterToast
     }
   | {
-      type: ActionType["DISMISS_TOAST"] | ActionType["REMOVE_TOAST"]
+      type: ActionType["UPDATE_TOAST"]
+      toast: Partial<ToasterToast>
+    }
+  | {
+      type: ActionType["DISMISS_TOAST"]
+      toastId?: ToasterToast["id"]
+    }
+  | {
+      type: ActionType["REMOVE_TOAST"]
       toastId?: ToasterToast["id"]
     }
 
@@ -62,11 +75,16 @@ function addToRemoveQueue(toastId: string) {
 
 export function toast(props: Omit<ToasterToast, "id">) {
   const id = genId()
-
-  const dismiss = () => {
-    toasts = toasts.filter(t => t.id !== id)
-    dispatch({ type: "DISMISS_TOAST", toastId: id })
+  const newToast = {
+    ...props,
+    id,
+    open: true,
+    onOpenChange: (open: boolean) => {
+      if (!open) dismiss(id)
+    },
   }
+  
+  toasts = [...toasts, newToast]
 
   const update = (props: ToasterToast) => {
     toasts = toasts.map(t => t.id === id ? { ...t, ...props } : t)
@@ -75,13 +93,11 @@ export function toast(props: Omit<ToasterToast, "id">) {
       toast: { ...props, id },
     })
   }
-
-  const newToast: ToasterToast = {
-    ...props,
-    id,
+  
+  const dismiss = () => {
+    toasts = toasts.filter(t => t.id !== id)
+    dispatch({ type: "DISMISS_TOAST", toastId: id })
   }
-
-  toasts = [...toasts, newToast]
 
   dispatch({
     type: "ADD_TOAST",
@@ -89,25 +105,19 @@ export function toast(props: Omit<ToasterToast, "id">) {
   })
 
   return {
-    id,
+    id: id,
     dismiss,
     update,
-    open: true,
-    onOpenChange: (open: boolean) => {
-      if (!open) dismiss()
-    },
   }
 }
 
 function dispatch(action: Action) {
-  if ("toast" in action) {
-    const message = action.toast?.title ?? '通知'
-    const description = action.toast?.description ?? ''
-
-    sonnerToast(message, {
-      description,
-    })
-  }
+  sonnerToast[action.type === "ADD_TOAST" ? "success" : "error"](
+    action.toast?.title as Renderable,
+    {
+      description: action.toast?.description as ValueOrFunction<Renderable>,
+    }
+  )
 }
 
 export function useToast() {
