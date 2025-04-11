@@ -258,7 +258,7 @@ export default function HomePage() {
               className="w-full sm:w-auto rounded-full"
             >
               <Link href="/contact">
-                無料相談を予約する
+                お問い合わせはこちら
                 <ArrowDown className="ml-2 h-4 w-4" />
               </Link>
             </Button>

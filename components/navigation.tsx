@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Boxes, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 import {
@@ -50,11 +50,11 @@ export function Navigation() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/" className="flex items-center space-x-2">
-              <Boxes className="h-6 w-6 text-primary" strokeWidth={1.5} />
               <span className="company-logo text-xl">Ziptech⁺</span>
             </Link>
             <nav className="hidden md:flex items-center space-x-8">
               <NavLink href="/services">サービス</NavLink>
+              <NavLink href="/pricing">料金</NavLink>
               <NavLink href="/works">制作実績</NavLink>
               <NavLink href="/about">会社概要</NavLink>
             </nav>
@@ -79,6 +79,7 @@ export function Navigation() {
                 </SheetHeader>
                 <nav className="flex flex-col space-y-4 mt-8">
                   <NavLink href="/services">サービス</NavLink>
+                  <NavLink href="/pricing">料金</NavLink>
                   <NavLink href="/works">制作実績</NavLink>
                   <NavLink href="/about">会社概要</NavLink>
                   <Link href="/contact" onClick={() => setIsOpen(false)}>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Boxes, Github, Instagram, Twitter } from "lucide-react"
+import { Instagram, Twitter, Github } from "lucide-react"
 
 export function Footer() {
   const footerLinks = [
@@ -39,7 +39,6 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2 w-fit">
-              <Boxes className="h-6 w-6 text-primary" strokeWidth={1.5} />
               <span className="company-logo text-xl">Ziptech⁺</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-md">
