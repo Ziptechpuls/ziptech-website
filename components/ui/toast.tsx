@@ -7,6 +7,8 @@ import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+const ToastProvider = ToastPrimitives.Provider
+
 const ToastViewport = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Viewport>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
@@ -111,13 +113,12 @@ const ToastDescription = React.forwardRef<
 ToastDescription.displayName = ToastPrimitives.Description.displayName
 
 type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>
-
 type ToastActionElement = React.ReactElement<typeof ToastAction>
 
 export {
   type ToastProps,
   type ToastActionElement,
-  ToastPrimitives as Provider,
+  ToastProvider,
   ToastViewport,
   Toast,
   ToastTitle,
@@ -125,7 +126,3 @@ export {
   ToastClose,
   ToastAction,
 }
-
-export { Toast }
-
-export { ToastClose, ToastDescription, ToastTitle, ToastViewport }
