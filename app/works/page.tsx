@@ -4,26 +4,30 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function WorksPage() {
   const projects = [
     {
-      title: "ECプラットフォーム",
-      description: "Next.jsとTailwind CSSを使用した最新のECプラットフォーム",
-      image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80",
-      category: "Webアプリケーション開発",
+      title: "不動産サンプルサイト",
+      description: "Next.jsとTailwind CSSを使用したモダンな不動産ポータルサイト",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80",
+      category: "Webサイト制作",
+      link: "https://nipo-fudo-design-labo.lovable.app/",
     },
     {
-      title: "医療ダッシュボード",
-      description: "医療専門家向けの直感的なダッシュボード",
-      image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80",
-      category: "UI/UXデザイン",
+      title: "土木建設会社サイト",
+      description: "土木建設会社のコーポレートサイト。シンプルで力強いデザインを採用",
+      image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80",
+      category: "コーポレートサイト",
+      link: "https://green-earthworks-web.lovable.app/",
     },
     {
-      title: "金融分析アプリ",
-      description: "リアルタイムの金融データ可視化プラットフォーム",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
-      category: "Webアプリケーション",
+      title: "焼肉店サイト",
+      description: "高級焼肉店のブランドサイト。上質な雰囲気を表現したデザイン",
+      image: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&q=80",
+      category: "飲食店サイト",
+      link: "https://inspiring-melba-d78557.netlify.app/",
     },
     {
       title: "教育プラットフォーム",
@@ -91,12 +95,37 @@ export default function WorksPage() {
                     className="object-cover transition-transform group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <ExternalLink className="text-white w-8 h-8" />
+                    {project.link ? (
+                      <Link 
+                        href={project.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-white hover:text-white/80 transition-colors"
+                      >
+                        <ExternalLink className="w-8 h-8" />
+                      </Link>
+                    ) : (
+                      <ExternalLink className="text-white w-8 h-8" />
+                    )}
                   </div>
                 </div>
                 <CardHeader>
                   <div className="space-y-1">
-                    <CardTitle className="text-xl">{project.title}</CardTitle>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                      {project.link ? (
+                        <Link 
+                          href={project.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors inline-flex items-center gap-2"
+                        >
+                          {project.title}
+                          <ExternalLink className="w-4 h-4" />
+                        </Link>
+                      ) : (
+                        project.title
+                      )}
+                    </CardTitle>
                     <CardDescription className="text-sm text-muted-foreground">
                       {project.category}
                     </CardDescription>
