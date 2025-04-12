@@ -77,22 +77,19 @@ export default function Page() {
 
         <div className="container relative z-10 mx-auto px-4">
           <motion.div 
-            className="mx-auto max-w-4xl text-center"
+            className="mx-auto max-w-[800px] text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
-              デジタルの力で、
-              <br className="hidden sm:block" />
-              ビジネスの未来を創造する
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-8">
+              <span className="block mb-2">ビジネスを加速させる、</span>
+              <span className="block">あなた専用のWebサイトを。</span>
             </h1>
-            <p className="text-base sm:text-lg leading-8 text-gray-300 max-w-2xl mx-auto">
-              私たちは、最新のテクノロジーと創造的なアイデアで、
-              <br className="hidden sm:block" />
-              お客様のビジネスに革新的なソリューションを提供します。
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              最新のテクノロジーと創造的なアイデアを活かし、お客様のビジネスの魅力を最大限に伝えるホームページを制作します。
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
