@@ -34,7 +34,7 @@ export default function ProcessPage() {
     {
       icon: <Package className="h-8 w-8" />,
       title: "最終確認・納品",
-      description: "完成後、最終チェックを行い、問題なければ本番公開（納品）となります。納品後も、月額プランにて運用・保守をしっかりサポートします。",
+      description: "完成後、最終チェックを行い、問題なければ本番公開（納品）となります。納品後も、月額プランにて運用・保守をしっかりサポートいたします。",
     },
   ];
 
@@ -69,8 +69,17 @@ export default function ProcessPage() {
               >
                 <Card className="relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 group-hover:-translate-y-1">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative p-6 md:grid md:grid-cols-[1fr_auto_1fr] md:gap-8 items-center">
-                    <div className={`text-center md:text-right ${index % 2 === 0 ? 'md:order-1' : 'md:order-3'}`}>
+                  <div className="relative p-6">
+                    {/* Mobile Layout */}
+                    <div className="md:hidden flex flex-col items-center text-center">
+                      <motion.div 
+                        className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center text-primary shadow-xl shadow-primary/5 transition-transform group-hover:scale-110 mb-4"
+                        initial={{ rotate: -10, scale: 0.9 }}
+                        animate={{ rotate: 0, scale: 1 }}
+                        transition={{ delay: 0.1 }}
+                      >
+                        {step.icon}
+                      </motion.div>
                       <motion.h3 
                         className="text-xl font-semibold mb-2"
                         initial={{ opacity: 0 }}
@@ -89,30 +98,52 @@ export default function ProcessPage() {
                       </motion.p>
                     </div>
 
-                    <div className="flex justify-center my-6 md:my-0 md:order-2">
-                      <div className="relative">
-                        <motion.div 
-                          className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center text-primary shadow-xl shadow-primary/5 transition-transform group-hover:scale-110"
-                          initial={{ rotate: -10, scale: 0.9 }}
-                          animate={{ rotate: 0, scale: 1 }}
-                          transition={{ delay: 0.1 }}
+                    {/* Desktop Layout */}
+                    <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] md:gap-8 items-center">
+                      <div className={`text-left ${index % 2 === 0 ? 'order-1' : 'order-3'}`}>
+                        <motion.h3 
+                          className="text-xl font-semibold mb-2"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.2 }}
                         >
-                          {step.icon}
-                        </motion.div>
-                        <div className="absolute top-1/2 -translate-y-1/2 left-full w-12 h-0.5 bg-gradient-to-r from-primary/20 to-transparent hidden md:block" />
-                        <div className="absolute top-1/2 -translate-y-1/2 right-full w-12 h-0.5 bg-gradient-to-l from-primary/20 to-transparent hidden md:block" />
+                          {step.title}
+                        </motion.h3>
+                        <motion.p 
+                          className="text-muted-foreground"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.3 }}
+                        >
+                          {step.description}
+                        </motion.p>
                       </div>
-                    </div>
 
-                    <div className={`text-center md:text-left ${index % 2 === 0 ? 'md:order-3' : 'md:order-1'}`}>
-                      <motion.span 
-                        className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary/10 to-transparent text-primary font-bold text-2xl rounded-full"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        {index + 1}
-                      </motion.span>
+                      <div className="order-2">
+                        <div className="relative">
+                          <motion.div 
+                            className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center text-primary shadow-xl shadow-primary/5 transition-transform group-hover:scale-110"
+                            initial={{ rotate: -10, scale: 0.9 }}
+                            animate={{ rotate: 0, scale: 1 }}
+                            transition={{ delay: 0.1 }}
+                          >
+                            {step.icon}
+                          </motion.div>
+                          <div className="absolute top-1/2 -translate-y-1/2 left-full w-12 h-0.5 bg-gradient-to-r from-primary/20 to-transparent" />
+                          <div className="absolute top-1/2 -translate-y-1/2 right-full w-12 h-0.5 bg-gradient-to-l from-primary/20 to-transparent" />
+                        </div>
+                      </div>
+
+                      <div className={`${index % 2 === 0 ? 'order-3 text-left' : 'order-1 text-right'}`}>
+                        <motion.span 
+                          className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary/10 to-transparent text-primary font-bold text-2xl rounded-full ${index % 2 === 0 ? 'ml-0' : 'ml-auto'}`}
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          {index + 1}
+                        </motion.span>
+                      </div>
                     </div>
                   </div>
                 </Card>
