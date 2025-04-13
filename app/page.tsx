@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Code2, Laptop, Smartphone, ArrowDown, CheckCircle2, Sparkles, Target, Shield } from "lucide-react";
+import { Code2, Laptop, Smartphone, ArrowDown, CheckCircle2, Sparkles, Target, Shield, FileText, MessageSquare, Users, HeartHandshake, Palette, Package, FileQuestion } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -48,6 +48,57 @@ export default function Page() {
     {
       icon: <CheckCircle2 className="h-5 w-5" />,
       text: "24時間サポート体制"
+    }
+  ];
+
+  const processSteps = [
+    {
+      icon: <MessageSquare className="h-6 w-6" />,
+      title: "お問い合わせ",
+      description: "まずは無料相談からスタート"
+    },
+    {
+      icon: <Users className="h-6 w-6" />,
+      title: "ヒアリング",
+      description: "目的や要望をしっかり把握"
+    },
+    {
+      icon: <FileText className="h-6 w-6" />,
+      title: "プラン提案",
+      description: "最適なプランをご提案"
+    },
+    {
+      icon: <HeartHandshake className="h-6 w-6" />,
+      title: "契約・着手",
+      description: "制作をスタート"
+    },
+    {
+      icon: <Palette className="h-6 w-6" />,
+      title: "デザイン",
+      description: "魅力的なデザインを制作"
+    },
+    {
+      icon: <Package className="h-6 w-6" />,
+      title: "納品・運用",
+      description: "継続的なサポート"
+    }
+  ];
+
+  const faqCategories = [
+    {
+      icon: <FileQuestion className="h-6 w-6" />,
+      title: "準備・費用",
+      description: "必要な準備や費用について"
+    },
+    {
+      icon: <Code2 className="h-6 w-6" />,
+      title: "技術・仕様",
+      description: "対応技術や仕様について"
+    },
+    {
+      icon: <MessageSquare className="h-6 w-6" />,
+      title: "進め方",
+      description: "制作の進め方について"
     }
   ];
 
@@ -171,6 +222,114 @@ export default function Page() {
         </div>
       </section>
 
+      {/* Process Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <span className="text-sm font-semibold text-primary">OUR PROCESS</span>
+            <h2 className="text-3xl font-bold mt-2">制作の流れ</h2>
+            <p className="mt-4 text-muted-foreground">
+              お問い合わせから納品まで、一貫したサポート体制でお客様のプロジェクトを進めていきます
+            </p>
+          </motion.div>
+
+          <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-6 max-w-6xl mx-auto">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative group"
+              >
+                <Card className="p-6 text-center h-full hover:shadow-lg transition-all hover:-translate-y-1">
+                  <div className="mb-4 mx-auto w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    {step.icon}
+                  </div>
+                  <h3 className="font-semibold mb-2">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                  {index < processSteps.length - 1 && (
+                    <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-primary/20" />
+                  )}
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-12"
+          >
+            <Button asChild variant="outline" size="lg" className="rounded-full">
+              <Link href="/process">
+                詳しい流れを見る
+                <ArrowDown className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Preview Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <span className="text-sm font-semibold text-primary">FAQ</span>
+            <h2 className="text-3xl font-bold mt-2">よくある質問</h2>
+            <p className="mt-4 text-muted-foreground">
+              ホームページ制作に関する疑問にお答えします
+            </p>
+          </motion.div>
+
+          <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
+            {faqCategories.map((category, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Link href="/faq">
+                  <Card className="p-6 text-center hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer">
+                    <div className="mb-4 mx-auto w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                      {category.icon}
+                    </div>
+                    <h3 className="font-semibold mb-2">{category.title}</h3>
+                    <p className="text-sm text-muted-foreground">{category.description}</p>
+                  </Card>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-12"
+          >
+            <Button asChild variant="outline" size="lg" className="rounded-full">
+              <Link href="/faq">
+                すべての質問を見る
+                <ArrowDown className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -203,8 +362,8 @@ export default function Page() {
                 ))}
               </div>
               <Button asChild className="mt-8 rounded-full">
-                <Link href="/contact">
-                  お問い合わせはこちら
+                <Link href="/about">
+                  詳しく見る
                   <ArrowDown className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
