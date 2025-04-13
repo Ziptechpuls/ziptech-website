@@ -9,19 +9,26 @@ export function Footer() {
     {
       title: "サービス",
       links: [
-        { name: "Webアプリケーション開発", href: "/services" },
-        { name: "UI/UXデザイン", href: "/services" },
-        { name: "パフォーマンス最適化", href: "/services" },
-        { name: "品質保証", href: "/services" },
+        { name: "Webサイト制作", href: "/services" },
+        { name: "ランディングページ制作", href: "/services" },
+        { name: "サイトリニューアル", href: "/services" },
+        { name: "料金プラン", href: "/pricing" },
+      ],
+    },
+    {
+      title: "制作の流れ",
+      links: [
+        { name: "制作の流れ", href: "/process" },
+        { name: "よくある質問", href: "/faq" },
+        { name: "制作実績", href: "/works" },
+        { name: "お問い合わせ", href: "/contact" },
       ],
     },
     {
       title: "会社情報",
       links: [
-        { name: "制作実績", href: "/works" },
         { name: "会社概要", href: "/about" },
-        { name: "お問い合わせ", href: "/contact" },
-        { name: "プライバシーポリシー", href: "#" },
+        { name: "プライバシーポリシー", href: "/privacy" },
       ],
     },
   ]
@@ -64,7 +71,7 @@ export function Footer() {
           </div>
 
           {/* Links Grid */}
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-3 gap-8">
             {footerLinks.map((group, index) => (
               <div key={index} className="space-y-4">
                 <h3 className="font-semibold text-sm">{group.title}</h3>

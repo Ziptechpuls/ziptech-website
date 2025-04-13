@@ -56,6 +56,8 @@ export function Navigation() {
               <NavLink href="/services">サービス</NavLink>
               <NavLink href="/pricing">料金</NavLink>
               <NavLink href="/works">制作実績</NavLink>
+              <NavLink href="/process">制作の流れ</NavLink>
+              <NavLink href="/faq">FAQ</NavLink>
               <NavLink href="/about">会社概要</NavLink>
             </nav>
           </div>
@@ -81,6 +83,8 @@ export function Navigation() {
                   <NavLink href="/services">サービス</NavLink>
                   <NavLink href="/pricing">料金</NavLink>
                   <NavLink href="/works">制作実績</NavLink>
+                  <NavLink href="/process">制作の流れ</NavLink>
+                  <NavLink href="/faq">FAQ</NavLink>
                   <NavLink href="/about">会社概要</NavLink>
                   <Link href="/contact" onClick={() => setIsOpen(false)}>
                     <Button className="rounded-full w-full">
